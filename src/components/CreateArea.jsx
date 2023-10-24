@@ -28,7 +28,6 @@ function CreateArea(props) {
 
     }
 
-
   return (
     <div>
       <form>
