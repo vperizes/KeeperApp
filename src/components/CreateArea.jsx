@@ -9,6 +9,7 @@ function CreateArea(props) {
     });
 
     function updateNote(event){
+        //getting the name and value attribute of the element that triggered event
         const inputName = event.target.name;
         const inputValue = event.target.value;
 
@@ -25,7 +26,15 @@ function CreateArea(props) {
                 };
             }
         });
+    }
 
+    function submitNote(event){
+        event.preventDefault();
+            props.create(note);
+            setNote({
+                title: "",
+                noteBody: ""
+            });
     }
 
   return (
@@ -33,14 +42,7 @@ function CreateArea(props) {
       <form>
         <input onChange={updateNote} name="title" placeholder="Title" value={note.title}/>
         <textarea onChange={updateNote} name="content" placeholder="Take a note..." rows="3" value={note.noteBody}/>
-        <button onClick={(event) => {
-            event.preventDefault();
-            props.create(note);
-            setNote({
-                title: "",
-                noteBody: ""
-            });
-        }}>Add</button>
+        <button onClick={submitNote}>Add</button>
       </form>
     </div>
   );
